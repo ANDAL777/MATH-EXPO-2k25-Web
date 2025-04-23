@@ -1,0 +1,81 @@
+/* Confetti animation */
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #0a1a3f;
+  opacity: 0.8;
+  animation: confetti-fall 3s linear forwards;
+  pointer-events: none;
+  border-radius: 2px;
+  box-shadow: 0 0 5px #142e6c;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(-50vw + 50%)) translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Countdown zero animation */
+.countdown-zero {
+  animation: countdown-flash 1s ease infinite;
+  color: #ffcc00;
+  text-shadow: 0 0 10px #ffcc00;
+}
+
+@keyframes countdown-flash {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 180px;
+  background-color: #0a1a3f;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -90px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.9rem;
+  font-family: 'Times New Roman', serif;
+}
+
+.tooltip:hover .tooltip-text,
+.tooltip:focus .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Small click animation */
+.click-animate {
+  transition: transform 0.1s ease;
+}
+
+.click-animate:active {
+  transform: scale(0.95);
+}

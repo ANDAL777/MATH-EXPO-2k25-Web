@@ -1,0 +1,45 @@
+.timeline-item {
+  background: #f0f4ff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+
+.timeline-item:hover {
+  box-shadow: 0 0 20px rgba(126, 163, 242, 0.9);
+}
+
+.timeline-item:hover,
+.timeline-item[aria-expanded="true"] {
+  box-shadow: 0 4px 20px rgba(126, 163, 242, 0.8);
+  transform: translateY(-5px);
+}
+
+.timeline-item:active {
+  transform: translateY(-2px) scale(0.98);
+  box-shadow: 0 2px 10px rgba(126, 163, 242, 0.6);
+}
+
+.event-details {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  display: none;
+}
+
+.timeline-item[aria-expanded="true"] .event-details {
+  display: block;
+}
+
+.event-details ul {
+  padding-left: 1.2rem;
+  margin: 0.3rem 0 0 0;
+}
+
+.event-details ul li {
+  margin-bottom: 0.2rem;
+}
