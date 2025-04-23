@@ -76,8 +76,6 @@ header {
   box-sizing: border-box;
 }
 
-/* Responsive styles removed to keep site appearance consistent on all devices */
-/*
 @media (max-width: 1024px) {
   .math-expo-title {
     font-size: 2.5rem;
@@ -121,6 +119,8 @@ header {
 
   .logo {
     width: 30vw;
+    max-width: 120px;
+    height: auto;
   }
 
   .floating-symbol {
@@ -132,11 +132,51 @@ header {
   }
 
   .register-button {
-    width: 120px;
-    font-size: 0.9rem;
+    width: 100%;
+    max-width: 200px;
+    font-size: 1rem;
+    padding: 12px 20px;
+    box-sizing: border-box;
+  }
+
+  .content {
+    padding: 1rem 0.5rem;
+  }
+
+  .main-wrapper {
+    padding: 0 0.5rem 1rem;
+  }
+
+  header {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .center-content {
+    padding: 0 1rem;
+  }
+
+  .animated-header {
+    font-size: 2rem;
+    white-space: normal;
+    border-right: none;
+    animation: none;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .menu li a {
+    font-size: 1.2rem;
+    padding: 10px 20px;
   }
 }
-*/
 
 /* Floating symbols background container */
 #floating-symbols-bg {
