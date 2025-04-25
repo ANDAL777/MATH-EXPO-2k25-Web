@@ -12,6 +12,296 @@ body {
   box-sizing: border-box;
 }
 
+/* Logo styles */
+.logo {
+  width: 150px;
+  height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+  display: block;
+  margin: 0 auto;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+}
+
+/* Header styles */
+header {
+  background-color: #0a1a3f;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+header > * {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.math-expo-title {
+  white-space: nowrap;
+  margin: 0;
+  font-size: 2rem !important;
+}
+
+.year {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+/* Floating symbols */
+.floating-symbol {
+  position: absolute;
+  font-size: 2rem;
+  color: #ffffff50;
+  animation: float 8s infinite ease-in-out;
+  user-select: none;
+  pointer-events: none;
+}
+
+.floating-symbol-white {
+  position: absolute;
+  font-size: 2rem;
+  color: #0a1a3f80;
+  animation: float 8s infinite ease-in-out;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Center content */
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* Math Expo title */
+.math-expo-title {
+  font-size: 2rem !important;
+  margin: 0.5rem 0;
+}
+
+/* Year span */
+.year {
+  color: #ffd700;
+}
+
+/* Lottie container */
+.lottie-container {
+  margin: 0;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-container {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 150px;
+}
+
+/* Countdown container */
+.countdown-container {
+  font-size: 1.2rem;
+}
+
+/* Keyframes for floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* Logo animation */
+.logo {
+  animation: logo-anim 2s infinite ease-in-out;
+}
+
+@keyframes logo-anim {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-15px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.8; }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .logo {
+    width: 40px;
+  }
+
+  .floating-symbol {
+    font-size: 1.5rem;
+  }
+
+  .countdown-container {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 24px;
+    margin: 0;
+  }
+
+  nav {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+  }
+
+  .floating-symbol {
+    font-size: 1.2rem;
+  }
+
+  .countdown-container {
+    font-size: 0.9rem;
+  }
+}
+
+/* Navigation styles */
+nav {
+  font-family: 'Times New Roman', serif;
+  position: relative;
+  top: 10px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.menu li a {
+  font-family: 'Times New Roman', serif;
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  display: block;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.menu li a:hover {
+  background-color: #ffd700;
+  color: #0a1a3f;
+}
+
+/* Hamburger menu icon */
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+  .menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    height: 100vh;
+    width: 250px;
+    background-color: #0a1a3f;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    z-index: 1001;
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
+  .menu li a {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+
+  .menu-icon {
+    display: block;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1002;
+  }
+}
+
+/* Register button styles */
+#register {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+#register.visible {
+  opacity: 1;
+}
+
+#register-button {
+  display: inline-block;
+  background-color: #0a1a3f;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  width: 150px;
+}
+
 *,
 *::before,
 *::after {
@@ -200,6 +490,93 @@ header {
   z-index: 2;
   overflow: hidden;
   background: transparent;
+}
+
+/* New Mathexpo header section */
+.mathexpo-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: #0a1a3f;
+  color: white;
+  font-family: 'Times New Roman', serif;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mathexpo-header > * {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.mathexpo-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.mathexpo-year {
+  font-size: 2rem;
+  color: #ffd700;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.animated-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #ffd700;
+  border-radius: 50%;
+  animation: bounce 1.5s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.countdown-timer {
+  font-size: 1.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 150px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .mathexpo-header {
+    height: 100vh;
+    padding: 1rem;
+  }
+  .mathexpo-title {
+    font-size: 2rem;
+  }
+  .mathexpo-year {
+    font-size: 1.5rem;
+  }
+  .animated-icon {
+    width: 25px;
+    height: 25px;
+  }
+  .countdown-timer {
+    font-size: 1.2rem;
+    min-width: auto;
+  }
 }
 
 /* Floating symbol styles */
@@ -785,6 +1162,21 @@ footer {
   color: #ffffff; /* White color for the icon */
   font-size: 30px; /* Icon size */
   cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Content section hidden by default */
+.content-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Content section visible with slide-in/fade-in */
+.content-section.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hidden {

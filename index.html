@@ -7,205 +7,41 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/whatsapp-button.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-  <nav>
-    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-    <ul id="menu" class="menu">
-      <li><a href="#about-us">About Us</a></li>
-      <li><a href="#brochure">Brochure</a></li>
-      <li><a href="#register-button">Register</a></li>
-      <li><a href="#contact">Contact Us</a></li>
-    </ul>
-  </nav>
-  
-  <style>
-    
-    body {
-      margin: 0;
-      font-family: 'Times New Roman', serif;
-    }
-
-    header {
-      background-color: #0a1a3f;
-      color: #ffffff;
-      position: relative;
-      overflow: hidden;
-      padding: 1.5rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      width: 40px;
-      height: auto;
-      z-index: 2;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.1);
-      box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
-    }
-
-    .center-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .math-expo-title {
-      font-size: 2rem !important;
-      margin: 0.5rem 0;
-    }
-
-    .year {
-      color: #ffd700;
-    }
-
-    .lottie-container {
-      margin: 1rem auto;
-    }
-
-    .countdown-container {
-      font-size: 1.2rem;
-    }
-
-    .floating-symbol {
-      position: absolute;
-      font-size: 2rem;
-      color: #ffffff50;
-      animation: float 8s infinite ease-in-out;
-    }
-    
-    .floating-symbol-white {
-      position: absolute;
-      font-size: 2rem;
-      color: #0a1a3f80;
-      animation: float 8s infinite ease-in-out;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
-    }
-
-    .logo {
-      animation: logo-anim 2s infinite ease-in-out;
-    }
-
-    @keyframes logo-anim {
-      0% { transform: translateY(0); opacity: 0.8; }
-      50% { transform: translateY(-15px); opacity: 1; }
-      100% { transform: translateY(0); opacity: 0.8; }
-    }
-
-    @media (max-width: 768px) {
-      .logo {
-        width: 40px;
-      }
-
-      .floating-symbol {
-        font-size: 1.5rem;
-      }
-
-      .countdown-container {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem;
-      }
-
-      .logo {
-        width: 24px;
-        margin: 0;
-      }
-
-      nav {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        margin: 0;
-      }
-
-      .floating-symbol {
-        font-size: 1.2rem;
-      }
-
-      .countdown-container {
-        font-size: 0.9rem;
-      }
-    }
-
-    nav {
-      font-family: 'Times New Roman', serif;
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      z-index: 3;
-    }
-
-    .menu li a {
-      font-family: 'Times New Roman', serif;
-    }
-
-    #register {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 2;
-    }
-
-    #register.visible {
-      opacity: 1;
-    }
-
-    #register-button {
-      display: inline-block;
-      background-color: #0a1a3f;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      color: white;
-      text-align: center;
-      width: 150px;
-    }
-  </style>
 </head>
 <body>
+  <nav>
+    <div class="menu-icon" id="menu-icon">&#9776;</div>
+    <ul id="menu" class="menu">
+      <li><a href="#brochure" id="menu-brochure">Brochure</a></li>
+      <li><a href="#about-us" id="menu-about">About Us</a></li>
+      <li><a href="#gallery" id="menu-gallery">Gallery</a></li>
+      <li><a href="#register-button" id="menu-registration">Registration</a></li>
+      <li><a href="#project-submission" id="menu-project-submission">Project Submission</a></li>
+      <li><a href="#template" id="menu-template">Template</a></li>
+      <li><a href="#contact" id="menu-contact">Contact Us</a></li>
+    </ul>
+  </nav>
+
   <div id="floating-symbols-bg"></div>
   <header>
-    <img src="Group 40009.png" alt="Math Expo Logo" style="max-width: 150px;" />
-    <h1 class="math-expo-title">MATH-EXPO <span class="year">2K25</span></h1>
-    <div class="lottie-container" id="lottie-math-icon" style="width: 100px; height: 100px; margin: 1rem auto;"></div>
-    <div class="countdown-container" style="font-size: 1.2rem;">
-      <div class="countdown" id="countdown">Loading countdown...</div>
+    <img src="Group 40009.png" alt="Math Expo Logo" class="logo" />
+    <div class="title-container">
+      <h1 class="math-expo-title">MATH-EXPO</h1>
+      <h2 class="year">2K25</h2>
     </div>
-    <script>
-      document.getElementById('countdown').addEventListener('click', function() {
-        confetti({
-          particleCount: 150,
-          spread: 100,
-          origin: { y: 0.6 }
-        });
-      });
-    </script>
+    <div class="lottie-container" id="lottie-math-icon" style="width: 100px; height: 100px; margin: 1rem auto;"></div>
+  <div class="countdown-container" style="font-size: 1.2rem;">
+    <div class="countdown" id="countdown">Loading countdown...</div>
+  </div>
+
+  <!-- Countdown popup modal -->
+  <div id="countdown-popup" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+      <span id="countdown-popup-close" class="modal-close">&times;</span>
+      <h2>The event has started!</h2>
+      <p>Thank you for your interest. Stay tuned for more updates.</p>
+    </div>
+  </div>
     <!-- Floating math symbols -->
     <div class="floating-symbol" style="top: 10vh; left: 5vw;">∑</div>
     <div class="floating-symbol" style="top: 20vh; left: 15vw; animation-delay: 2s;">π</div>
@@ -219,6 +55,11 @@
     <div class="floating-symbol" style="top: 45vh; left: 90vw; animation-delay: 2.5s;">σ</div>
     <div class="floating-symbol" style="top: 55vh; left: 65vw; animation-delay: 4.5s;">Φ</div>
   </header>
+
+  
+
+  <script src="js/countdown-timer.js"></script>
+  <script src="js/menu.js"></script>
 
   <div class="main-wrapper">
     <div class="content">
@@ -234,19 +75,20 @@
       <div class="floating-symbol-white" style="top: 35vh; left: 80vw; animation-delay: 0.5s;">λ</div>
       <div class="floating-symbol-white" style="top: 45vh; left: 90vw; animation-delay: 2.5s;">σ</div>
       <div class="floating-symbol-white" style="top: 55vh; left: 65vw; animation-delay: 4.5s;">Φ</div>
-      <section id="about-us">
-        <h2 class="animated-header">About us</h2>
-        <p>
-          Math Expo 2K25 is an exciting intra-college event organized by the Department of Science & Humanities at KGiSL Institute of Technology, set for April 30th, 2025.
-          The expo showcases the creative and practical side of mathematics through 4 engaging tracks designed to spark curiosity and innovation.
-          From visual displays and working models to interactive demos and challenges, it’s a platform to explore real-world math applications.
-          Math Expo 2K25 is a platform to learn, present, and inspire.
-          Ready to uncover the power of math beyond the classroom?
-        </p>
-    </section>
-    <a href="https://bit.ly/MATHEXPO-2025-REG-FORM" class="register-button" id="register-button">Unlock the Math Magic</a>
-  </div>
-</body>
+      <div class="content-section" id="section-about-us" style="display:none;">
+        <section id="about-us">
+          <h2 class="animated-header">About us</h2>
+          <p>
+            Math Expo 2K25 is an exciting intra-college event organized by the Department of Science & Humanities at KGiSL Institute of Technology, set for April 30th, 2025.
+            The expo showcases the creative and practical side of mathematics through 4 engaging tracks designed to spark curiosity and innovation.
+            From visual displays and working models to interactive demos and challenges, it’s a platform to explore real-world math applications.
+            Math Expo 2K25 is a platform to learn, present, and inspire.
+            Ready to uncover the power of math beyond the classroom?
+          </p>
+        </section>
+      </div>
+      <a href="https://bit.ly/MATHEXPO-2025-REG-FORM" class="register-button" id="register-button">Unlock the Math Magic</a>
+    </div>
     <div class="section-divider">
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="width: 100%; height: 100px; display: block;">
         <path fill="#0a1a3f" d="M0,0 C480,100 960,0 1440,100 L1440,0 L0,0 Z">
@@ -260,22 +102,26 @@
       </svg>
     </div>
 
-    <section id="timeline">
-      <div class="timeline-item">
-        <h3>Project Submission</h3>
-        <p>Submit your project before <strong>April 28th, 2025</strong></p>
-      </div>
-      <div class="timeline-item">
-        <h3>Display Day</h3>
-        <p>All exhibits will be displayed on <strong>April 30th, 2025</strong> at <strong>Yoga Hall</strong></p>
-      </div>
-    </section>
+    <div class="content-section" id="section-timeline" style="display:none;">
+      <section id="timeline">
+        <div class="timeline-item">
+          <h3>Project Submission</h3>
+          <p>Submit your project before <strong>April 28th, 2025</strong></p>
+        </div>
+        <div class="timeline-item">
+          <h3>Display Day</h3>
+          <p>All exhibits will be displayed on <strong>April 30th, 2025</strong> at <strong>Yoga Hall</strong></p>
+        </div>
+      </section>
+    </div>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Mr. T. Pradeepkumar: +91-95005-63272</p>
-      <p>Mr. K. Senthilkumar: +91-99946-61911</p>
-    </section>
+    <div class="content-section" id="section-contact" style="display:none;">
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Mr. T. Pradeepkumar: +91-95005-63272</p>
+        <p>Mr. K. Senthilkumar: +91-99946-61911</p>
+      </section>
+    </div>
 
     <a href="https://chat.whatsapp.com/BTkaxc0JmtwFtqp5Wpc0mv" target="_blank" rel="noopener" class="whatsapp-join-button" aria-label="Join our Math Learners Group!">
       <i class="fab fa-whatsapp"></i>
@@ -322,7 +168,7 @@
   <script src="js/init-lottie.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="js/topics-wheel.js"></script>
-  <script src="js\register-button-scroll.js"></script>
+  <script src="js/register-button-scroll.js"></script>
   <script src="js/floating-symbols-new.js"></script>
   <script src="js/success-popup.js"></script>
   <script>
