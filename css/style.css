@@ -244,6 +244,7 @@ header > * {
   .content {
     max-width: 100%;
     padding: 1.5rem 1rem;
+    font-size: 1.25rem; /* Increase font size for better readability */
   }
   .register-container {
     max-width: 300px;
@@ -290,7 +291,7 @@ header > * {
   }
 
   .menu li a {
-    font-size: 1.2rem;
+    font-size: 1.4rem; /* Increased font size for better readability */
     width: 100%;
   }
 
