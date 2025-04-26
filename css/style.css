@@ -39,10 +39,93 @@ header {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  height: 100vh;
+  height: auto;
   width: 100vw;
   box-sizing: border-box;
   text-align: center;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: auto;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.math-expo-title {
+  font-size: 2.5rem !important;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.year {
+  font-size: 2rem;
+  color: #ffd700;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.lottie-container {
+  width: 100px;
+  height: 100px;
+  margin: 1rem auto;
+}
+
+.countdown-container {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 1rem;
+    height: auto;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .math-expo-title {
+    font-size: 2rem !important;
+  }
+
+  .year {
+    font-size: 1.5rem;
+  }
+
+  .lottie-container {
+    width: 80px;
+    height: 80px;
+    margin: 0.5rem auto;
+  }
+
+  .countdown-container {
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Hide floating symbols on small screens to avoid clutter */
+@media (max-width: 768px) {
+  .floating-symbol {
+    display: none !important;
+  }
 }
 
 header > * {
@@ -153,9 +236,70 @@ header > * {
 }
 
 /* Responsive styles */
+@media (max-width: 1024px) {
+  .main-wrapper {
+    max-width: 90%;
+    padding: 0 1rem 1.5rem;
+  }
+  .content {
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+  }
+  .register-container {
+    max-width: 300px;
+    margin: 1.5rem auto 3rem auto;
+  }
+  .register-button {
+    width: 100%;
+    max-width: 300px;
+    font-size: 1.1rem;
+  }
+}
+
 @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 2rem 1rem 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
   .logo {
     width: 40px;
+    margin-bottom: 1rem;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    height: 100vh;
+    width: 250px;
+    background-color: #0a1a3f;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    z-index: 1001;
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
+  .menu li a {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+
+  .menu-icon {
+    display: block;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1002;
   }
 
   .floating-symbol {
@@ -163,6 +307,19 @@ header > * {
   }
 
   .countdown-container {
+    font-size: 1rem;
+  }
+
+  .register-container {
+    max-width: 280px;
+    margin: 1rem auto 3rem auto;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .register-button {
+    width: 100%;
+    max-width: 280px;
     font-size: 1rem;
   }
 }
@@ -393,7 +550,7 @@ nav {
 
 #register-button, .register-button {
   display: inline-block;
-  background-color: #0a1a3f;
+  background-color: #001f4d;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
@@ -405,10 +562,9 @@ nav {
   border: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 #register-button:hover, .register-button:hover {
-  background-color: #142e6c;
-  box-shadow: 0 0 25px #142e6c;
+  background-color: #003366;
+  box-shadow: 0 0 25px #003366;
 }
 
 /* Modal styles */

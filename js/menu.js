@@ -1,3 +1,28 @@
+const templateMenuItem = document.getElementById('menu-template');
+if (templateMenuItem) {
+  templateMenuItem.addEventListener('click', function(event) {
+    event.preventDefault();
+    const fileUrl = this.href;
+
+    // Create a temporary anchor element to trigger download/open
+    const tempLink = document.createElement('a');
+    tempLink.href = fileUrl;
+    tempLink.target = '_blank';
+    tempLink.rel = 'noopener';
+    tempLink.download = '';
+
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+
+    // Close the menu if open
+    const menu = document.getElementById('menu');
+    if (menu) {
+      menu.classList.remove('active');
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const menuIcon = document.getElementById('menu-icon');
   const menu = document.getElementById('menu');
@@ -32,9 +57,34 @@ document.addEventListener('DOMContentLoaded', function () {
   // Show all sections on page load
   showAllSections();
 
+  // Cache for loaded sections content
+  const loadedSections = new Set();
+
+  // Function to load section content dynamically
+  async function loadSectionContent(sectionId) {
+    if (loadedSections.has(sectionId)) {
+      return; // Already loaded
+    }
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    try {
+      const response = await fetch(`template/${sectionId}.html`);
+      if (!response.ok) {
+        console.error(`Failed to load content for ${sectionId}: ${response.statusText}`);
+        return;
+      }
+      const html = await response.text();
+      section.innerHTML = html;
+      loadedSections.add(sectionId);
+    } catch (error) {
+      console.error(`Error loading content for ${sectionId}:`, error);
+    }
+  }
+
   // Attach click handlers to menu items
   menu.querySelectorAll('a').forEach(function (menuItem) {
-    menuItem.addEventListener('click', function (event) {
+    menuItem.addEventListener('click', async function (event) {
       const menuId = this.id;
       if (menuId === 'menu-project-submission') {
         // Override default navigation for Project Submission menu
@@ -53,6 +103,9 @@ document.addEventListener('DOMContentLoaded', function () {
             section.style.display = 'none';
           }
         });
+
+        // Load content dynamically for timeline section
+        await loadSectionContent('section-timeline');
 
         // Smooth scroll to section-timeline centered
         const targetSection = document.getElementById('section-timeline');
@@ -73,7 +126,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       const targetId = this.getAttribute('href').substring(1);
-      const targetSection = document.getElementById('section-' + targetId);
+      const targetSectionId = 'section-' + targetId;
+
+      // Load content dynamically for target section
+      await loadSectionContent(targetSectionId);
+
+      const targetSection = document.getElementById(targetSectionId);
       if (targetSection) {
         window.scrollTo({
           top: targetSection.offsetTop,
@@ -107,19 +165,31 @@ document.addEventListener('DOMContentLoaded', function () {
   const galleryButton = document.getElementById('menu-gallery');
   const galleryModal = document.getElementById('gallery-modal');
   const galleryModalClose = document.getElementById('gallery-modal-close');
-
+  const galleryVideo = document.getElementById('gallery-video');
+  
   galleryButton.addEventListener('click', function(event) {
     event.preventDefault();
     galleryModal.style.display = 'block';
+    if (galleryVideo) {
+      galleryVideo.play();
+    }
   });
-
+  
   galleryModalClose.addEventListener('click', function() {
     galleryModal.style.display = 'none';
+    if (galleryVideo) {
+      galleryVideo.pause();
+      galleryVideo.currentTime = 0;
+    }
   });
-
+  
   window.addEventListener('click', function(event) {
     if (event.target === galleryModal) {
       galleryModal.style.display = 'none';
+      if (galleryVideo) {
+        galleryVideo.pause();
+        galleryVideo.currentTime = 0;
+      }
     }
   });
 
