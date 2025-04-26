@@ -104,3 +104,41 @@ html {
   color: #000;
   text-decoration: none;
 }
+
+/* Styles for generic section modal */
+.modal-content-card {
+  padding: 1.5rem 2rem;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: fadeInScale 0.3s ease forwards;
+}
+
+.modal-body {
+  color: #0a1a3f;
+  font-family: 'Times New Roman', serif;
+  text-align: left;
+}
+
+/* Fade-in and scale animation */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    margin: 10% auto;
+  }
+
+  .modal-content-card {
+    padding: 1rem 1.5rem;
+  }
+}

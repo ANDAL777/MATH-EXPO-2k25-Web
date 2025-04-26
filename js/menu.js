@@ -70,4 +70,71 @@ document.addEventListener('DOMContentLoaded', function () {
       brochureModal.style.display = 'none';
     }
   });
+
+  // Gallery modal open/close logic
+  const galleryButton = document.getElementById('menu-gallery');
+  const galleryModal = document.getElementById('gallery-modal');
+  const galleryModalClose = document.getElementById('gallery-modal-close');
+
+  galleryButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    galleryModal.style.display = 'block';
+  });
+
+  galleryModalClose.addEventListener('click', function() {
+    galleryModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', function(event) {
+    if (event.target === galleryModal) {
+      galleryModal.style.display = 'none';
+    }
+  });
+
+  // Section modal open/close logic
+  const sectionModal = document.getElementById('section-modal');
+  const sectionModalBody = document.getElementById('section-modal-body');
+  const sectionModalClose = document.getElementById('section-modal-close');
+
+  // Function to open modal with cloned section content
+  function openSectionModal(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    // Clear previous content
+    sectionModalBody.innerHTML = '';
+
+    // Clone the section content and append to modal body
+    const clonedContent = section.cloneNode(true);
+    sectionModalBody.appendChild(clonedContent);
+
+    // Show modal
+    sectionModal.style.display = 'block';
+  }
+
+  // Attach click handlers to menu items for sections
+  const sectionMenuItems = ['menu-about', 'menu-registration', 'menu-project-submission', 'menu-template', 'menu-contact'];
+  sectionMenuItems.forEach(menuId => {
+    const menuItem = document.getElementById(menuId);
+    if (menuItem) {
+      menuItem.addEventListener('click', function(event) {
+        event.preventDefault();
+        closeMenu();
+        const targetId = this.getAttribute('href').substring(1);
+        openSectionModal('section-' + targetId);
+      });
+    }
+  });
+
+  // Close modal on close button click
+  sectionModalClose.addEventListener('click', function() {
+    sectionModal.style.display = 'none';
+  });
+
+  // Close modal on clicking outside modal content
+  window.addEventListener('click', function(event) {
+    if (event.target === sectionModal) {
+      sectionModal.style.display = 'none';
+    }
+  });
 });
