@@ -17,16 +17,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Function to show only the selected section
-  function showSection(sectionId) {
-    document.querySelectorAll('.content-section').forEach(section => {
-      section.style.display = 'none';
+  // Function to show all required sections simultaneously
+  function showAllSections() {
+    const sectionsToShow = ['about-us', 'contact', 'timeline'];
+    sectionsToShow.forEach(sectionId => {
+      const section = document.getElementById('section-' + sectionId);
+      if (section) {
+        section.style.display = 'block';
+        section.classList.add('visible'); // Add visible class for opacity and animation
+      }
     });
-    const targetSection = document.getElementById('section-' + sectionId);
-    if (targetSection) {
-      targetSection.style.display = 'block';
-    }
   }
+
+  // Show all sections on page load
+  showAllSections();
 
   // Attach click handlers to menu items
   menu.querySelectorAll('a').forEach(function (menuItem) {
@@ -35,14 +39,13 @@ document.addEventListener('DOMContentLoaded', function () {
       closeMenu();
 
       const targetId = this.getAttribute('href').substring(1);
-      showSection(targetId);
 
       const targetSection = document.getElementById('section-' + targetId);
       if (targetSection) {
-        // Instant scroll to target section top offset
+        // Scroll to target section top offset without hiding others
         window.scrollTo({
           top: targetSection.offsetTop,
-          behavior: 'auto' // 'instant' is not standard, use 'auto' for immediate scroll
+          behavior: 'auto'
         });
       }
     });
