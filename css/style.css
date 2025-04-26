@@ -156,7 +156,7 @@ header > * {
 .floating-symbol {
   position: absolute;
   font-size: 2rem;
-  color: rgba(255, 255, 255, 0.6); /* Bright and light for white background */
+  color: rgba(255, 255, 255, 0.15); /* Increased transparency for less distraction */
   animation: float 8s infinite ease-in-out;
   user-select: none;
   pointer-events: none;
@@ -165,7 +165,7 @@ header > * {
 .floating-symbol-white {
   position: absolute;
   font-size: 2rem;
-  color: #0a1a3f80;
+  color: rgba(10, 26, 63, 0.15); /* Increased transparency for less distraction */
   animation: float 8s infinite ease-in-out;
   user-select: none;
   pointer-events: none;
@@ -553,7 +553,7 @@ nav {
 
 #register-button, .register-button {
   display: inline-block;
-  background-color: #001f4d;
+  background-color: #04132a;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
@@ -1553,7 +1553,9 @@ footer {
 
 /* Content section visible with slide-in/fade-in */
 .content-section.visible {
-  
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Download button style for menu */
@@ -1574,6 +1576,3 @@ footer {
   background-color: #218838;
   outline: none;
 }
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
