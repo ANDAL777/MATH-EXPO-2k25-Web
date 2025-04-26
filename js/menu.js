@@ -35,17 +35,49 @@ document.addEventListener('DOMContentLoaded', function () {
   // Attach click handlers to menu items
   menu.querySelectorAll('a').forEach(function (menuItem) {
     menuItem.addEventListener('click', function (event) {
+      const menuId = this.id;
+      if (menuId === 'menu-project-submission') {
+        // Override default navigation for Project Submission menu
+        event.preventDefault();
+        closeMenu();
+
+        // Hide all content sections except section-timeline
+        document.querySelectorAll('.content-section').forEach(section => {
+          if (section.id === 'section-timeline') {
+            section.classList.remove('hidden-content');
+            section.classList.add('highlighted-section');
+            section.style.display = 'block';
+          } else {
+            section.classList.add('hidden-content');
+            section.classList.remove('highlighted-section');
+            section.style.display = 'none';
+          }
+        });
+
+        // Smooth scroll to section-timeline centered
+        const targetSection = document.getElementById('section-timeline');
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      // For other menu items, restore all sections visible
       event.preventDefault();
       closeMenu();
 
-      const targetId = this.getAttribute('href').substring(1);
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('hidden-content');
+        section.classList.remove('highlighted-section');
+        section.style.display = 'block';
+      });
 
+      const targetId = this.getAttribute('href').substring(1);
       const targetSection = document.getElementById('section-' + targetId);
       if (targetSection) {
-        // Scroll to target section top offset without hiding others
         window.scrollTo({
           top: targetSection.offsetTop,
-          behavior: 'auto'
+          behavior: 'smooth'
         });
       }
     });
@@ -118,6 +150,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuItem = document.getElementById(menuId);
     if (menuItem) {
       menuItem.addEventListener('click', function(event) {
+        if (menuId === 'menu-project-submission' || menuId === 'menu-template') {
+          // Allow default navigation for external link or template file
+          closeMenu();
+          return;
+        }
         event.preventDefault();
         closeMenu();
         const targetId = this.getAttribute('href').substring(1);

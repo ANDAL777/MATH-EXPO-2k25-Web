@@ -1,4 +1,4 @@
-
+/* Overlay for modal */
 .success-popup-overlay {
   position: fixed;
   top: 0;
@@ -13,14 +13,15 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  }
-  
-  .success-popup-overlay.active {
+}
+
+.success-popup-overlay.active {
   opacity: 1;
   pointer-events: auto;
-  }
-  
-  .success-popup {
+}
+
+/* Modal container */
+.success-popup {
   background: #0a1a3f;
   color: #fff;
   padding: 2rem 3rem;
@@ -28,67 +29,164 @@
   box-shadow: 0 0 20px #7ea3f2;
   text-align: center;
   font-family: 'Poppins', sans-serif;
-  animation: popupScale 0.4s ease forwards;
+  animation: popupScaleFadeIn 0.5s ease forwards;
   max-width: 400px;
   width: 90%;
-  }
-  
-  @keyframes popupScale {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #7ea3f2;
+  box-shadow:
+    0 0 8px #7ea3f2,
+    0 0 20px #7ea3f2,
+    0 0 30px #7ea3f2 inset;
+}
+
+/* Bloom and fade-in animation */
+@keyframes popupScaleFadeIn {
   0% {
-  transform: scale(0.5);
-  opacity: 0;
+    transform: scale(0.7);
+    opacity: 0;
+    filter: brightness(0.8);
   }
   100% {
-  transform: scale(1);
-  opacity: 1;
+    transform: scale(1);
+    opacity: 1;
+    filter: brightness(1);
   }
+}
+
+/* Glow border animation */
+@keyframes glowBorder {
+  0%, 100% {
+    box-shadow:
+      0 0 8px #7ea3f2,
+      0 0 20px #7ea3f2,
+      0 0 30px #7ea3f2 inset;
   }
-  
-  .success-popup h2 {
+  50% {
+    box-shadow:
+      0 0 12px #a3b8ff,
+      0 0 30px #a3b8ff,
+      0 0 40px #a3b8ff inset;
+  }
+}
+
+.success-popup.glow {
+  animation: glowBorder 3s ease-in-out infinite;
+}
+
+/* Confetti animation container */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Confetti pieces */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #7ea3f2;
+  opacity: 0.8;
+  border-radius: 2px;
+  animation-name: confettiFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  will-change: transform, opacity;
+}
+
+/* Different colors for confetti */
+.confetti:nth-child(1) { background-color: #7ea3f2; }
+.confetti:nth-child(2) { background-color: #a3b8ff; }
+.confetti:nth-child(3) { background-color: #5a7edc; }
+.confetti:nth-child(4) { background-color: #9bbcff; }
+.confetti:nth-child(5) { background-color: #6f8edb; }
+
+/* Confetti fall animation */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Subtle animated background */
+.subtle-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, #0a1a3f, #142d6f, #0a1a3f);
+  background-size: 400% 400%;
+  animation: subtleBackgroundMove 15s ease-in-out infinite;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* Background movement animation */
+@keyframes subtleBackgroundMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Modal content styles */
+.modal-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Modal header */
+.success-popup h2 {
   margin-bottom: 1rem;
   font-weight: 700;
   font-size: 1.8rem;
-  }
-  
-  .success-popup p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  }
-  
-  .success-popup button {
-  background-color: #7ea3f2;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 1.8rem;
+  color: #7ea3f2;
+  background: transparent;
   border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 6px;
-  color: #0a1a3f;
-  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  }
-  
-  .success-popup button:hover {
-  background-color: #5a7edc;
+  transition: color 0.3s ease;
+  z-index: 3;
+}
+
+.modal-close:hover {
+  color: #a3b8ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .success-popup {
+    padding: 1.5rem 2rem;
+    max-width: 90%;
   }
 
-  .bubble {
-    position: absolute;
-    bottom: 0;
-    background: rgba(126, 163, 242, 0.7);
-    border-radius: 50%;
-    opacity: 0.7;
-    animation-name: bubbleRise;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
+  .success-popup h2 {
+    font-size: 1.4rem;
   }
-  
-  @keyframes bubbleRise {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 0.7;
-    }
-    100% {
-      transform: translateY(-150px) scale(0.5);
-      opacity: 0;
-    }
-  }
-  
+}

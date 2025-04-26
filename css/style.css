@@ -73,7 +73,7 @@ header > * {
 .floating-symbol {
   position: absolute;
   font-size: 2rem;
-  color: #ffffff50;
+  color: rgba(255, 255, 255, 0.6); /* Bright and light for white background */
   animation: float 8s infinite ease-in-out;
   user-select: none;
   pointer-events: none;
@@ -352,7 +352,7 @@ nav {
   user-select: none;
   transition: filter 0.3s ease;
   background-color: transparent; /* Ensure transparent background */
-  margin-left: 1rem; /* Space to the right of button */
+  margin-right: 1rem; /* Space to the left of button */
 }
 
 .ramanujan-gesture:hover {
@@ -1387,9 +1387,51 @@ footer {
 
 /* Content section visible with slide-in/fade-in */
 .content-section.visible {
+  
+}
+
+/* Download button style for menu */
+.download-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white !important;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover,
+.download-button:focus {
+  background-color: #218838;
+  outline: none;
+}
   display: block;
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Hide content sections */
+.hidden-content {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Highlighted section */
+.highlighted-section {
+  border: 3px solid #ffd700;
+  box-shadow: 0 0 30px #ffd700cc;
+  border-radius: 15px;
+  padding: 1rem;
+  background-color: #fffbea;
+  margin: 2rem auto;
+  max-width: 700px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .hidden {

@@ -5,11 +5,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('register-form');
   const formSuccessMessage = document.getElementById('form-success-message');
 
-  // Utility: Scroll to element instantly
-  function instantScrollTo(element) {
-    window.scrollTo({
-      top: element.offsetTop,
-      behavior: 'auto'
+  // Smooth scroll to element and return a Promise that resolves when scroll ends
+  function smoothScrollTo(element) {
+    return new Promise((resolve) => {
+      const targetPosition = element.offsetTop;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 400; // fast but smooth scroll duration in ms
+      let startTime = null;
+
+      function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        } else {
+          resolve();
+        }
+      }
+
+      function easeInOutQuad(t, b, c, d) {
+        t /= d/2;
+        if (t < 1) return c/2*t*t + b;
+        t--;
+        return -c/2 * (t*(t-2) - 1) + b;
+      }
+
+      requestAnimationFrame(animation);
     });
   }
 
@@ -18,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     registerModal.setAttribute('aria-hidden', 'false');
     registerModal.style.display = 'flex';
     const modalContent = registerModal.querySelector('.modal-content');
-    modalContent.classList.remove('animate__fadeInDown');
+    modalContent.classList.remove('bloom-fade-in');
     // Trigger reflow to restart animation
     void modalContent.offsetWidth;
     modalContent.classList.add('bloom-fade-in');
@@ -94,12 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Event listeners
   registerButton.addEventListener('click', (e) => {
     e.preventDefault();
-    // Scroll instantly to the register button's position
-    instantScrollTo(registerButton);
-    // Show modal after a short delay to ensure scroll completes
-    setTimeout(() => {
-      showModal();
-    }, 100); // 100ms delay for scroll to complete
+    // Redirect to external registration form URL
+    window.location.href = 'https://bit.ly/MATHEXPO-2025-REG-FORM';
   });
 
   modalCloseButton.addEventListener('click', () => {
@@ -118,63 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Simulate form submission success
       registerForm.style.display = 'none';
       formSuccessMessage.hidden = false;
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const sectionModal = document.getElementById('section-modal');
-  const sectionModalBody = document.getElementById('section-modal-body');
-  const sectionModalClose = document.getElementById('section-modal-close');
-
-  // Bubble animation logic
-  function createBubble() {
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
-    bubble.style.left = Math.random() * 100 + '%';
-    bubble.style.animationDuration = 3 + Math.random() * 2 + 's';
-    bubble.style.width = 10 + Math.random() * 20 + 'px';
-    bubble.style.height = bubble.style.width;
-    sectionModalBody.appendChild(bubble);
-
-    bubble.addEventListener('animationend', () => {
-      bubble.remove();
-    });
-  }
-
-  let bubbleInterval = null;
-
-  function startBubbles() {
-    stopBubbles();
-    bubbleInterval = setInterval(createBubble, 300);
-  }
-
-  function stopBubbles() {
-    if (bubbleInterval) {
-      clearInterval(bubbleInterval);
-      bubbleInterval = null;
-    }
-  }
-
-  // Observe modal content changes to start/stop bubbles
-  const observer = new MutationObserver(() => {
-    if (sectionModal.style.display === 'block' && sectionModalBody.querySelector('#section-registration')) {
-      startBubbles();
-    } else {
-      stopBubbles();
-    }
-  });
-
-  observer.observe(sectionModalBody, { childList: true, subtree: true });
-
-  // Stop bubbles on modal close
-  sectionModalClose.addEventListener('click', () => {
-    stopBubbles();
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target === sectionModal) {
-      stopBubbles();
     }
   });
 });
