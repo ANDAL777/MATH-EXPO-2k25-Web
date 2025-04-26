@@ -401,9 +401,12 @@ header > * {
 nav {
   font-family: 'Times New Roman', serif;
   position: relative;
-  top: 10px;
-  right: 20px;
+  top: 0;
+  right: 0;
   z-index: 1000;
+  background-color: #0a1a3f;
+  padding: 1rem;
+  margin: 0;
 }
 
 .menu {
@@ -1256,6 +1259,13 @@ nav {
   color: white;
   cursor: pointer;
   display: none;
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 1002;
+  background-color: #0a1a3f;
+  padding: 5px 10px;
+  border-radius: 0 0 0 5px;
 }
 
 .menu {
@@ -1567,35 +1577,3 @@ footer {
   display: block;
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Hide content sections */
-.hidden-content {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none;
-  user-select: none;
-  transition: opacity 0.5s ease;
-}
-
-/* Highlighted section */
-.highlighted-section {
-  border: 3px solid #ffd700;
-  box-shadow: 0 0 30px #ffd700cc;
-  border-radius: 15px;
-  padding: 1rem;
-  background-color: #fffbea;
-  margin: 2rem auto;
-  max-width: 700px;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.hidden {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-
-.visible {
-  opacity: 1;
-  transition: opacity 0.5s ease-in;
-}
