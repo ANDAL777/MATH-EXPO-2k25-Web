@@ -5,9 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const distance = targetDate - now;
 
     const countdownEl = document.getElementById('countdown');
+    const countdownPopupTextEl = document.getElementById('countdown-popup-text');
 
     if (distance <= 0) {
-      countdownEl.textContent = '🎉 Math Expo Started!';
+      const finishedText = '🎉 Math Expo Started!';
+      countdownEl.textContent = finishedText;
+      if (countdownPopupTextEl) countdownPopupTextEl.textContent = finishedText;
       countdownEl.classList.add('countdown-zero');
       clearInterval(timerInterval);
 
@@ -31,7 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+    // Format time as DD:HH:MM:SS with leading zeros
+    const formatNumber = (num) => num.toString().padStart(2, '0');
+    const countdownText = `${formatNumber(days)}d : ${formatNumber(hours)}h : ${formatNumber(minutes)}m : ${formatNumber(seconds)}s`;
+
+    countdownEl.textContent = countdownText;
+    if (countdownPopupTextEl) countdownPopupTextEl.textContent = countdownText;
     countdownEl.classList.add('animate');
     setTimeout(() => countdownEl.classList.remove('animate'), 900);
   }
@@ -47,6 +55,32 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       countdownEl.removeChild(confetti);
     }, 3000);
+  }
+
+  // Show popup on clicking countdown timer
+  const countdownEl = document.getElementById('countdown');
+  const countdownPopup = document.getElementById('countdown-popup');
+  const countdownPopupClose = document.getElementById('countdown-popup-close');
+
+  countdownEl.style.cursor = 'pointer';
+  countdownEl.title = 'Click to open countdown popup';
+
+  countdownEl.addEventListener('click', () => {
+    if (countdownPopup) countdownPopup.style.display = 'flex';
+  });
+
+  if (countdownPopupClose) {
+    countdownPopupClose.addEventListener('click', () => {
+      if (countdownPopup) countdownPopup.style.display = 'none';
+    });
+  }
+
+  if (countdownPopup) {
+    countdownPopup.addEventListener('click', (e) => {
+      if (e.target === countdownPopup) {
+        countdownPopup.style.display = 'none';
+      }
+    });
   }
 
   const timerInterval = setInterval(updateCountdown, 1000);

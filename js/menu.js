@@ -17,28 +17,33 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Close menu when clicking a menu item
+  // Function to show only the selected section
+  function showSection(sectionId) {
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.style.display = 'none';
+    });
+    const targetSection = document.getElementById('section-' + sectionId);
+    if (targetSection) {
+      targetSection.style.display = 'block';
+    }
+  }
+
+  // Attach click handlers to menu items
   menu.querySelectorAll('a').forEach(function (menuItem) {
     menuItem.addEventListener('click', function (event) {
       event.preventDefault();
       closeMenu();
 
       const targetId = this.getAttribute('href').substring(1);
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth' });
+      showSection(targetId);
 
-        // After scrolling, show only the relevant content section
-        setTimeout(() => {
-          const contentSections = document.querySelectorAll('.content-section');
-          contentSections.forEach(section => {
-            if (section.id === 'section-' + targetId) {
-              section.classList.add('visible');
-            } else {
-              section.classList.remove('visible');
-            }
-          });
-        }, 600); // Delay to allow scroll animation to complete
+      const targetSection = document.getElementById('section-' + targetId);
+      if (targetSection) {
+        // Instant scroll to target section top offset
+        window.scrollTo({
+          top: targetSection.offsetTop,
+          behavior: 'auto' // 'instant' is not standard, use 'auto' for immediate scroll
+        });
       }
     });
   });

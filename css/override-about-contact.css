@@ -1,0 +1,10 @@
+/* Enable native smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset fixed navbar height for About Us section */
+#about-us {
+  padding-top: 100px; /* Adjust based on your navbar height */
+  margin-top: -100px; /* Negative margin to offset the padding */
+}
