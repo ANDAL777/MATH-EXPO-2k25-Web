@@ -167,6 +167,50 @@ header > * {
   }
 }
 
+/* Ramanujan image styles */
+.ramanujan-figure {
+  margin: 2rem auto;
+  max-width: 300px;
+  text-align: center;
+  color: #ffd700;
+  font-family: 'Times New Roman', serif;
+  user-select: none;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.ramanujan-image {
+  width: 100%;
+  height: auto;
+  border: 3px solid #ffd700;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ffd700aa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ramanujan-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #ffd700cc;
+}
+
+.ramanujan-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-style: italic;
+  color: #ffde59;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 480px) {
   header {
     flex-direction: row;
@@ -286,11 +330,68 @@ nav {
   z-index: 2;
 }
 
+/* Container for register button and Ramanujan gesture */
+.register-container {
+  display: flex;
+  flex-direction: row; /* Ensure row direction */
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto 4rem auto;
+  max-width: 400px;
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+/* Ramanujan gesture image next to register button */
+/* Use a transparent background PNG image for best effect */
+.ramanujan-gesture {
+  width: 80px;
+  height: auto;
+  cursor: pointer;
+  animation: handWave 3s ease-in-out infinite;
+  user-select: none;
+  transition: filter 0.3s ease;
+  background-color: transparent; /* Ensure transparent background */
+  margin-left: 1rem; /* Space to the right of button */
+}
+
+.ramanujan-gesture:hover {
+  filter: drop-shadow(0 0 8px #ffd700);
+}
+
+/* Subtle hand wave animation */
+@keyframes handWave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .register-container {
+    flex-direction: column;
+    max-width: 200px;
+  }
+
+  .ramanujan-gesture {
+    width: 60px;
+  }
+}
+
 #register.visible {
   opacity: 1;
 }
 
-#register-button {
+#register-button, .register-button {
   display: inline-block;
   background-color: #0a1a3f;
   padding: 10px 20px;
@@ -300,6 +401,118 @@ nav {
   color: white;
   text-align: center;
   width: 150px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#register-button:hover, .register-button:hover {
+  background-color: #142e6c;
+  box-shadow: 0 0 25px #142e6c;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(10, 26, 63, 0.8);
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: 'Times New Roman', serif;
+  color: #0a1a3f;
+  box-shadow: 0 0 30px rgba(10, 26, 63, 0.5);
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0a1a3f;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: #142e6c;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', serif;
+}
+
+.error-message {
+  color: #ff2d55;
+  font-size: 0.875rem;
+  margin-top: 0.2rem;
+  min-height: 1.2em;
+  display: block;
+}
+
+.submit-button {
+  background-color: #0a1a3f;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Times New Roman', serif;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #142e6c;
+  box-shadow: 0 0 25px #142e6c;
+}
+
+.form-success-message {
+  color: #0a1a3f;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 *,

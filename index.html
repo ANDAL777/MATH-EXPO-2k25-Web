@@ -64,18 +64,54 @@
       <div class="floating-symbol-white" style="top: 45vh; left: 90vw; animation-delay: 2.5s;">σ</div>
       <div class="floating-symbol-white" style="top: 55vh; left: 65vw; animation-delay: 4.5s;">Φ</div>
       <div class="content-section" id="section-about-us">
-        <section id="about-us">
-          <h2 class="animated-header">About us</h2>
-          <p>
-            Math Expo 2K25 is an exciting intra-college event organized by the Department of Science & Humanities at KGiSL Institute of Technology, set for April 30th, 2025.
-            The expo showcases the creative and practical side of mathematics through 4 engaging tracks designed to spark curiosity and innovation.
-            From visual displays and working models to interactive demos and challenges, it’s a platform to explore real-world math applications.
-            Math Expo 2K25 is a platform to learn, present, and inspire.
-            Ready to uncover the power of math beyond the classroom?
-          </p>
-        </section>
+<section id="about-us">
+  <h2 class="animated-header">About us</h2>
+  <p>
+    Math Expo 2K25 is an exciting intra-college event organized by the Department of Science & Humanities at KGiSL Institute of Technology, set for April 30th, 2025.
+    The expo showcases the creative and practical side of mathematics through 4 engaging tracks designed to spark curiosity and innovation.
+    From visual displays and working models to interactive demos and challenges, it’s a platform to explore real-world math applications.
+    Math Expo 2K25 is a platform to learn, present, and inspire.
+    Ready to uncover the power of math beyond the classroom?
+  </p>
+</section>
       </div>
-      <a href="https://bit.ly/MATHEXPO-2025-REG-FORM" class="register-button" id="register-button">Register</a>
+  <div class="register-container">
+    <button class="register-button" id="register-button">Register</button>
+    <img src="ramanujam.jpg" alt="Ramanujan pointing to register button" class="ramanujan-gesture" />
+  </div>
+
+  <!-- Registration Modal -->
+  <div id="register-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="register-modal-title" aria-modal="true">
+    <div class="modal-content modal-content-card animate__animated">
+      <button class="modal-close" id="register-modal-close" aria-label="Close registration form">&times;</button>
+      <h2 id="register-modal-title">Register for Math Expo 2K25</h2>
+      <form id="register-form" novalidate>
+        <div class="form-group">
+          <label for="name">Name<span aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" required aria-required="true" />
+          <span class="error-message" aria-live="polite"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email<span aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required aria-required="true" />
+          <span class="error-message" aria-live="polite"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" pattern="^\+?[0-9\s\-]{7,15}$" />
+          <span class="error-message" aria-live="polite"></span>
+        </div>
+        <div class="form-group">
+          <label for="institution">Institution</label>
+          <input type="text" id="institution" name="institution" />
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+      <div id="form-success-message" class="form-success-message" role="alert" aria-live="assertive" hidden>
+        Thank you for registering! We will get back to you soon.
+      </div>
+    </div>
+  </div>
     </div>
     <div class="section-divider">
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="width: 100%; height: 100px; display: block;">
@@ -147,6 +183,7 @@
 
   <script src="js/countdown.js"></script>
   <script src="js/menu.js"></script>
+  <script src="js/register.js"></script>
   <script src="js/success-popup.js"></script>
 </body>
 </html>
