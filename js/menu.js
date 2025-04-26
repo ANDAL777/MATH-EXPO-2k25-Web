@@ -86,36 +86,20 @@ document.addEventListener('DOMContentLoaded', function () {
   menu.querySelectorAll('a').forEach(function (menuItem) {
     menuItem.addEventListener('click', async function (event) {
       const menuId = this.id;
-      if (menuId === 'menu-project-submission') {
-        // Override default navigation for Project Submission menu
+      if (menuId === 'menu-about' || menuId === 'menu-contact') {
+        // Prevent scrolling and open modal only for About Us and Contact Us
         event.preventDefault();
         closeMenu();
-
-        // Hide all content sections except section-timeline
-        document.querySelectorAll('.content-section').forEach(section => {
-          if (section.id === 'section-timeline') {
-            section.classList.remove('hidden-content');
-            section.classList.add('highlighted-section');
-            section.style.display = 'block';
-          } else {
-            section.classList.add('hidden-content');
-            section.classList.remove('highlighted-section');
-            section.style.display = 'none';
-          }
-        });
-
-        // Load content dynamically for timeline section
-        await loadSectionContent('section-timeline');
-
-        // Smooth scroll to section-timeline centered
-        const targetSection = document.getElementById('section-timeline');
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        openSectionModal('section-' + this.getAttribute('href').substring(1));
         return;
       }
 
-      // For other menu items, restore all sections visible
+      // For project submission, allow default navigation to external URL
+      if (menuId === 'menu-project-submission') {
+        closeMenu();
+        return;
+      }
+
       event.preventDefault();
       closeMenu();
 
