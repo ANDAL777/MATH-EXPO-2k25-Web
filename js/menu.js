@@ -126,6 +126,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // Open registration section modal on register button click
+  const registerButton = document.getElementById('register-button');
+  if (registerButton) {
+    registerButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      openSectionModal('section-registration');
+    });
+  }
+
   // Close modal on close button click
   sectionModalClose.addEventListener('click', function() {
     sectionModal.style.display = 'none';
