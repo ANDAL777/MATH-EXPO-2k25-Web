@@ -50,4 +50,24 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  // Brochure modal open/close logic
+  const brochureButton = document.getElementById('menu-brochure');
+  const brochureModal = document.getElementById('brochure-modal');
+  const brochureModalClose = document.getElementById('brochure-modal-close');
+
+  brochureButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    brochureModal.style.display = 'block';
+  });
+
+  brochureModalClose.addEventListener('click', function() {
+    brochureModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', function(event) {
+    if (event.target === brochureModal) {
+      brochureModal.style.display = 'none';
+    }
+  });
 });
